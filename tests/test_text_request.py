@@ -67,6 +67,20 @@ class TestTextRequest(unittest.TestCase):
             'lastname': 'diallo'
         }])
 
+    def test_0level_2line_2paragraphs(self):
+        paragraph = ['FIRSTNAME: Moctar\n', 'LASTNAME: Diallo\n', '\n', 'FIRSTNAME: Amadou\n', 'LASTNAME: Ba\n', '\n']
+        request = api.TextRequest(paragraph)
+        self.assertEqual(request.data, [
+            {
+            'firstname': 'moctar',
+            'lastname': 'diallo'
+            },
+            {
+            'firstname': 'amadou',
+            'lastname': 'ba'
+            }
+        ])
+
     def test_0level_3line_paragraph(self):
         paragraph = ['FIRSTNAME: Moctar\n', 'LASTNAME: Diallo\n', 'ADDRESS: medina\n', '\n']
         request = api.TextRequest(paragraph)
