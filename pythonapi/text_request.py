@@ -3,13 +3,13 @@ from pythonapi._api import Request
 from pythonapi.domain import Line, Paragraph
 
 class TextRequest(Request):
-    def adapt(self, paragraph):
+    def adapt(self, paragraph: [str]):
+        paragraph = Paragraph(paragraph)
+        paragraph.sort()
         return self.process(paragraph)
 
-    def process(self, paragraph:[str]):
+    def process(self, paragraph:Paragraph):
         # paragraph.sort(key=lambda line: line.count(' '))
-        paragraph = Paragraph(paragraph)
-        # paragraph.sort()
         res = {}
         i = 0
         while i < len(paragraph):
