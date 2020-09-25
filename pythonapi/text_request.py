@@ -2,8 +2,22 @@ from pythonapi._api import Request
 
 from pythonapi.domain import Line, Paragraph
 
+def get_paragraphs(text:[str]) -> [[str]]:
+    parags = []
+    try:
+        parag_index = text.index('\n')
+    except ValueError:
+        return parags
+    parag = text[:parag_index]
+    parags.append(parag)
+    parags += get_paragraphs(text[parag_index+1:])
+    parags = list(filter(lambda line: line != [], parags))
+    return parags
+
+
 class TextRequest(Request):
-    def adapt(self, text: [[str]]):
+    def adapt(self, text: [str]):
+        text = get_paragraphs(text)
         text = [Paragraph(paragraph) for paragraph in text]
         for paragraph in text:
             paragraph.sort()
