@@ -16,7 +16,11 @@ def get_paragraphs(text:[str]) -> [[str]]:
 
 
 class TextRequest(Request):
+<<<<<<< HEAD
     def adapt(self, text: [str]):
+=======
+    def adapt(self, text: [[str]]):
+>>>>>>> 2b016aca578ea0035d52d1a5103cf4cfa70331cd
         text = get_paragraphs(text)
         text = [Paragraph(paragraph) for paragraph in text]
         for paragraph in text:
