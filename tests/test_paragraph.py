@@ -47,12 +47,22 @@ class TestSort(unittest.TestCase):
             Paragraph(['A:\n', '    B: Bb\n', '    E:\n', '        D: Dd\n', '        C: Cc\n'])
         )
 
-    def test_no_need_to_sort(self):
+    def test_sort_3levels(self):
         parag = Paragraph(['A:\n', '    E:\n', '        C: Cc\n'])
         parag.sort()
         self.assertEqual(parag,
             Paragraph(['A:\n', '    E:\n', '        C: Cc\n'])
         )
+
+    def test_sort_2levels(self):
+        parag = Paragraph(['A:\n', 'B:\n', '      C: Cc\n'])
+        # print(f"parag before sort:\n{parag.lines}")
+        parag.sort()
+        # print(f"parag after sort:\n{parag.lines}")
+        self.assertEqual(parag, 
+            Paragraph(['A:\n', 'B:\n', '      C: Cc\n'])
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

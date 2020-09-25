@@ -79,6 +79,18 @@ class TestInGoodPosition(unittest.TestCase):
         line = Line('A:\n', self.paragraph)
         self.assertTrue(line.in_good_position())
 
+    # @unittest.skip('repeated test')
+    def test_in_good_position_near_bad(self):
+        paragraph = ['A:\n', '    E: Ee\n', '    B:\n', '        C: Cc\n', '        D: Dd\n']
+        line = Line('    B:\n', paragraph)
+        self.assertTrue(line.in_good_position())
+
+    def test_in_good_position_near_bad_2breaklines(self):
+        parag = ['A:\n', 'B:\n', '      C: Cc\n']
+        line = Line('B:\n', parag)
+        self.assertTrue(line.in_good_position())
+
+
 class TestMoveBack(unittest.TestCase):
 
     def test_simple(self):

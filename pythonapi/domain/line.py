@@ -32,6 +32,9 @@ class Line:
         previous_index = self.index - 1
         if previous_index < 0:
             return True
+        k, v = self.get_key_value()
+        if v == '':
+            return True
         previous_line = Line(self.paragraph[previous_index], self.paragraph)
         if self.spaces > previous_line.spaces:
             return True
