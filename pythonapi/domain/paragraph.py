@@ -12,7 +12,10 @@ class Paragraph:
         return len(self.lines)
 
     def __getitem__(self, i):
-        return Line(self.lines[i], self.lines)
+        if isinstance(i, slice):
+            return Paragraph(self.lines[i.start:i.stop:i.step])
+        else:
+            return Line(self.lines[i], self.lines)
 
     def index(self, item: Line) -> int:
         return self.lines.index(item.line)

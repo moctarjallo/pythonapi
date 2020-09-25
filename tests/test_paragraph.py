@@ -30,7 +30,14 @@ class TestEqual(unittest.TestCase):
     def test_not_equal_simple(self):
         parag1 = Paragraph(['A:\n', '    E:\n', '        C: Cc\n', '        D: Dd\n', '    B: Bb\n'])
         parag2 = Paragraph(['A:\n', '       E:\n', '        C: Cc\n', '        D: Dd\n', '    B: Bb\n'])
-        self.assertNotEqual(parag1, parag2)        
+        self.assertNotEqual(parag1, parag2)  
+
+    def test_slice(self):
+        parag = Paragraph(['A:\n', '    E:\n', '        C: Cc\n', '        D: Dd\n', '    B: Bb\n'])
+        sub_parag = parag[1:3]
+        self.assertEqual(sub_parag,
+            Paragraph(['    E:\n', '        C: Cc\n'])
+        )
 
 class TestSort(unittest.TestCase):
     def test_sort(self):
