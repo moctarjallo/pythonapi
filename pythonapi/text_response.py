@@ -2,9 +2,10 @@ from ._api import Response
 
 class TextResponse(Response):
 
-    def adapt(self, data:{}):
-        form = '\n'
-        form += self.format(data, 0)
+    def adapt(self, data:[{}]):
+        for d in data:
+            form = '\n'
+            form += self.format(d, 0)
         return form
 
     def format(self, data: {}, i):
