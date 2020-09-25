@@ -3,10 +3,11 @@ from pythonapi._api import Request
 from pythonapi.domain import Line, Paragraph
 
 class TextRequest(Request):
-    def adapt(self, paragraph: [str]):
-        paragraph = Paragraph(paragraph)
-        paragraph.sort()
-        return self.process(paragraph)
+    def adapt(self, text: [[str]]):
+        text = [Paragraph(paragraph) for paragraph in text]
+        for paragraph in text:
+            paragraph.sort()
+        return [self.process(paragraph) for paragraph in text]
 
     def process(self, paragraph:Paragraph):
         # paragraph.sort(key=lambda line: line.count(' '))
