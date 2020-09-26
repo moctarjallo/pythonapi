@@ -4,12 +4,37 @@ import pythonapi as api
 
 class TestTupleRequest(unittest.TestCase):
     def test_simple(self):
-        keys = ['a', 'b', 'c']
-        values = (1, 2, 3)
-        req = api.TupleRequest(keys, values)
+        data = (('a', 1), ('b', 2), ('c', 3))
+        req = api.TupleRequest(data)
         self.assertEqual(req.data, {
             'a': 1,
             'b': 2,
+            'c': 3
+        })
+
+    def test_imbricated_tuple_in_dict_value(self):
+        data = (('a', (('d', 4), ('e', 5))), ('b',2), ('c', 3,))
+        req = api.TupleRequest(data)
+        self.assertEqual(req.data, {
+            'a': {
+                'd':4,
+                'e':5
+            },
+            'b': 2,
+            'c': 3
+        })
+
+    def test_triply_imbricated_tuple_in_dict_value(self):
+        data = (('a',1), ('b',(('f',(('d',4), ('e',5))),)), ('c',3))
+        req = api.TupleRequest(data)
+        self.assertEqual(req.data, {
+            'a': 1,
+            'b': {
+                'f':{
+                    'd':4,
+                    'e':5
+                }
+            },
             'c': 3
         })
 

@@ -2,6 +2,12 @@ from ._api import Request
 
 class TupleRequest(Request):
 
-    def adapt(self, *args, **kwargs):
-        keys, values = args[0], args[1]
-        return dict(zip(keys, values))
+    def adapt(self, *args:((())), **kwargs):
+        data = args[0]
+        res = {}
+        for t in data:
+            k, v = t
+            if isinstance(v, tuple):
+                v = self.adapt(v)
+            res.update({k:v})
+        return res
