@@ -2,7 +2,8 @@ from ._api import Response
 
 class TextResponse(Response):
 
-    def adapt(self, data:[{}]):
+    def adapt(self, *args:([{}], ...), **kwargs):
+        data:[{}] = args[0]
         for d in data:
             form = '\n'
             form += self.format(d, 0)

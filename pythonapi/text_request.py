@@ -16,8 +16,8 @@ def get_paragraphs(text:[str]) -> [[str]]:
 
 
 class TextRequest(Request):
-    def adapt(self, text: [str]):
-        text = get_paragraphs(text)
+    def adapt(self, *args:([str], ...), **kwargs):
+        text:[[str]] = get_paragraphs(args[0])
         text = [Paragraph(paragraph) for paragraph in text]
         for paragraph in text:
             paragraph.sort()

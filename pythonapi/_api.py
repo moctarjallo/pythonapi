@@ -1,9 +1,9 @@
 class API:
-    def __init__(self, data):
-        self.data = self.adapt(data)
+    def __init__(self, *args, **kwargs):
+        self.data = self.adapt(*args, **kwargs)
 
-    def adapt(self, data):
-        return data
+    def adapt(self, *args, **kwargs):
+        return args[0]
 
 
 class Request(API):
