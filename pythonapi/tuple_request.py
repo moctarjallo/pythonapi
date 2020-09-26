@@ -2,10 +2,6 @@ from ._api import Request
 
 class TupleRequest(Request):
 
-    def adapt(self, inputs: tuple):
-        d = {}
-        d['firstname'] = inputs[0]
-        d['lastname'] = inputs[1]
-        d['address'] = inputs[2]
-        d['balance'] = int(inputs[3])
-        return d
+    def adapt(self, *args, **kwargs):
+        keys, values = args[0], args[1]
+        return dict(zip(keys, values))
