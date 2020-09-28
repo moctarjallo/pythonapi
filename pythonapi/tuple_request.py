@@ -9,7 +9,10 @@ class TupleRequest(Request):
             k, v = t
             if isinstance(v, tuple): 
                 v = self.adapt(v)
-            elif isinstance(v, str) and v.isdigit():
-                v = float(v)
+            else: # if v is a string number (int or float)
+                try:
+                    v = float(v)
+                except Exception:
+                    pass
             res.update({k:v})
         return res
