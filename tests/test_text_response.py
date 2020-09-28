@@ -15,6 +15,27 @@ AGE: 27
 """
         )
 
+    def test_multiple_dicts(self):
+        response = TextResponse([
+            {
+                'firstname': "moctar",
+                'age': 27
+            },
+            {
+                'lastname': "diallo",
+                'balance': 5000
+            }
+        ])
+        self.assertEqual(response.data, 
+"""
+FIRSTNAME: Moctar
+AGE: 27
+
+LASTNAME: Diallo
+BALANCE: 5000
+"""
+        )
+
     def test_many_items_in_dict(self):
         response = TextResponse([{
             'firstname': 'moctar',

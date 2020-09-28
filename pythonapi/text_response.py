@@ -4,8 +4,9 @@ class TextResponse(Response):
 
     def adapt(self, *args:([{}], ...), **kwargs):
         data:[{}] = args[0]
+        form = ''
         for d in data:
-            form = '\n'
+            form += '\n'
             form += self.format(d, 0)
         return form
 
