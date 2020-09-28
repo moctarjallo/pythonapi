@@ -92,5 +92,25 @@ ACCOUNT:
 """
         )
 
+    def test_transaction_data(self):
+        response = TextResponse({
+            'action': 'deposit', 
+            'amount': 5000, 
+            'client_name': 'moctar', 
+            'account_code': 5544, 
+            'old_balance': 80000, 
+            'new_balance': 85000
+            })
+        self.assertEqual(response.data, 
+"""
+ACTION: Deposit
+AMOUNT: 5000
+CLIENT_NAME: Moctar
+ACCOUNT_CODE: 5544
+OLD_BALANCE: 80000
+NEW_BALANCE: 85000
+"""
+        )
+
 if __name__ == '__main__':
     unittest.main()

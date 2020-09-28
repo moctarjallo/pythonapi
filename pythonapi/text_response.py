@@ -4,6 +4,8 @@ class TextResponse(Response):
 
     def adapt(self, *args:([{}], ...), **kwargs):
         data:[{}] = args[0]
+        if not isinstance(data, list):
+            data = [data]
         form = ''
         for d in data:
             form += '\n'
