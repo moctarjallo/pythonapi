@@ -9,6 +9,8 @@ class TupleRequest(Request):
             if isinstance(t, dict):
                 t = tuple(t.items())[0]
             k, v = t
+            if isinstance(v, dict):
+                v = tuple(v.items())[0]
             if isinstance(v, tuple): 
                 v = self.adapt(v)
             else: # if v is a string number (int or float)
