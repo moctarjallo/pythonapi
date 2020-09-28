@@ -188,22 +188,22 @@ class TestTupleRequest(unittest.TestCase):
             }
         })
 
-def test_transaction_request_using_dicts_in_inputs(self):
-        ill_data = (('action', 'deposit'), ('amount', 2000), ('account', {'code': '2520', 'balance': '5000', 'client': {'address': 'thiaroye', 'lastname': 'ba', 'firstname': 'amadou'}}))
-        req = api.TupleRequest(ill_data)
-        self.assertEqual(req.data, {
-            'action': 'deposit',
-            'amount': 2000.0,
-            'account': {
-                'code': 2520.0,
-                'balance': 5000.0,
-                'client': {
-                    'address': 'plateau',
-                    'lastname': 'ba',
-                    'firstname': 'amadou'
+    def test_transaction_request_using_dicts_in_inputs(self):
+            ill_data = (('action', 'deposit'), ('amount', 2000), ('account', {'code': '2520', 'balance': '5000', 'client': {'address': 'thiaroye', 'lastname': 'ba', 'firstname': 'amadou'}}))
+            req = api.TupleRequest(ill_data)
+            self.assertEqual(req.data, {
+                'action': 'deposit',
+                'amount': 2000.0,
+                'account': {
+                    'code': 2520.0,
+                    'balance': 5000.0,
+                    'client': {
+                        'address': 'thiaroye',
+                        'lastname': 'ba',
+                        'firstname': 'amadou'
+                    }
                 }
-            }
-        })
+            })
 
 if __name__ == '__main__':
     unittest.main()

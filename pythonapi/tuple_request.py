@@ -10,7 +10,7 @@ class TupleRequest(Request):
                 t = tuple(t.items())[0]
             k, v = t
             if isinstance(v, dict):
-                v = tuple(v.items())[0]
+                v = tuple(v.items())
             if isinstance(v, tuple): 
                 v = self.adapt(v)
             else: # if v is a string number (int or float)
