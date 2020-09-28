@@ -18,6 +18,14 @@ class TestTupleRequest(unittest.TestCase):
             'b': 2
         })
 
+    def test_basic_with_dict_in_inputs(self):
+        data = ('a', '1'), {'b': 2}
+        req = api.TupleRequest(data)
+        self.assertEqual(req.data, {
+            'a': 1,
+            'b': 2
+        })
+
     def test_simple(self):
         data = (('a', 1), ('b', 2), ('c', 3))
         req = api.TupleRequest(data)
@@ -39,6 +47,16 @@ class TestTupleRequest(unittest.TestCase):
 
     def test_simple_imbrication_with_string_value(self):
         data = (('a', (('d', '4'), ('e', 5))),)
+        req = api.TupleRequest(data)
+        self.assertEqual(req.data, {
+            'a': {
+                'd':4,
+                'e':5
+            }
+        })
+
+    def test_simple_imbrication_with_dict_inputs(self):
+        data = ({'a': (('d', '4'), ('e', 5))},)
         req = api.TupleRequest(data)
         self.assertEqual(req.data, {
             'a': {
@@ -77,6 +95,30 @@ class TestTupleRequest(unittest.TestCase):
                         ('e',5)
                         )
                     ),
+                    )
+                ), 
+                ('c',3)
+                )
+        req = api.TupleRequest(data)
+        self.assertEqual(req.data, {
+            'a': 1,
+            'b': {
+                'f':{
+                    'd':4,
+                    'e':5
+                }
+            },
+            'c': 3
+        })
+
+    def test_triply_imbricated_tuple_with_dict_inputs(self):
+        data = (('a',1), 
+                ('b',(
+                    {'f':(
+                        {'d':4}, 
+                        {'e',5}
+                        )
+                    },
                     )
                 ), 
                 ('c',3)

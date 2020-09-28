@@ -6,6 +6,8 @@ class TupleRequest(Request):
         data = args[0]
         res = {}
         for t in data:
+            if isinstance(t, dict):
+                t = tuple(t.items())[0]
             k, v = t
             if isinstance(v, tuple): 
                 v = self.adapt(v)
