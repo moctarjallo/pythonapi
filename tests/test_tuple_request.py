@@ -10,6 +10,14 @@ class TestTupleRequest(unittest.TestCase):
             'a': 1,
         })
 
+    def test_basic_with_string_value(self):
+        data = ('a', '1'), ('b', 2)
+        req = api.TupleRequest(data)
+        self.assertEqual(req.data, {
+            'a': 1,
+            'b': 2
+        })
+
     def test_simple(self):
         data = (('a', 1), ('b', 2), ('c', 3))
         req = api.TupleRequest(data)
