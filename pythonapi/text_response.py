@@ -8,8 +8,9 @@ class TextResponse(Response):
             data = [data]
         form = ''
         for d in data:
-            form += '\n'
             form += self.format(d, 0)
+            form += '\n'
+        # form += '\n'
         return form
 
     def format(self, data: {}, i):

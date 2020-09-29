@@ -9,9 +9,9 @@ class TestTextResponse(unittest.TestCase):
             'age': 27
         }])
         self.assertEqual(response.data, 
-"""
-FIRSTNAME: Moctar
+"""FIRSTNAME: Moctar
 AGE: 27
+
 """
         )
 
@@ -27,12 +27,12 @@ AGE: 27
             }
         ])
         self.assertEqual(response.data, 
-"""
-FIRSTNAME: Moctar
+"""FIRSTNAME: Moctar
 AGE: 27
 
 LASTNAME: Diallo
 BALANCE: 5000
+
 """
         )
 
@@ -44,11 +44,11 @@ BALANCE: 5000
             'balance': 5000
         }])
         self.assertEqual(response.data,
-"""
-FIRSTNAME: Moctar
+"""FIRSTNAME: Moctar
 LASTNAME: Diallo
 ADDRESS: Medina
 BALANCE: 5000
+
 """
         )
 
@@ -62,11 +62,11 @@ BALANCE: 5000
         }])
 
         self.assertEqual(response.data,
-"""
-CLIENT:
+"""CLIENT:
     FIRSTNAME: Moctar
     LASTNAME: Diallo
 BALANCE: 5000
+
 """
         )
 
@@ -83,12 +83,12 @@ BALANCE: 5000
         # print(response.data)
 
         self.assertEqual(response.data,
-"""
-ACCOUNT:
+"""ACCOUNT:
     CLIENT:
         FIRSTNAME: Moctar
         LASTNAME: Diallo
     BALANCE: 5000
+
 """
         )
 
@@ -102,13 +102,13 @@ ACCOUNT:
             'new_balance': 85000
             })
         self.assertEqual(response.data, 
-"""
-ACTION: Deposit
+"""ACTION: Deposit
 AMOUNT: 5000
 CLIENT_NAME: Moctar
 ACCOUNT_CODE: 5544
 OLD_BALANCE: 80000
 NEW_BALANCE: 85000
+
 """
         )
 
